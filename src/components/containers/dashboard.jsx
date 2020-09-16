@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Content from '../../template/content';
-import ValueBox from '../../common/widget/valueBox';
-import Row from '../../common/layout/row';
+import Content from '../template/content';
+import ValueBox from '../common/widget/valueBox';
+import Row from '../common/layout/row';
 
 export default () => {
     return (

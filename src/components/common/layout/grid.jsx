@@ -15,7 +15,7 @@ export default props => {
     }
 
     return (
-        <div className={toCssClasses(props.cols) || '12'}>
+        <div className={toCssClasses(props.cols) || '12 col'}>
             {props.children}
         </div>
     );

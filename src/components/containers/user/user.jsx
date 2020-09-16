@@ -8,11 +8,10 @@ import GET_USERS from '../../../queries/getUsers';
 import Content from '../../template/content';
 import TabHeader from '../../common/tab/tabHeader';
 import TabContent from '../../common/tab/tabContent';
-import Table from '../../common/table/table';
+import List from './userList';
 import Form from '../../common/form/form';
-
-// import List from './billingCycleList';
-// import Form from './billingCycleForm';
+import FormItem from '../../common/form/formItem';
+import Grid from '../../common/layout/grid';
 
 export default props => {
 
@@ -26,11 +25,22 @@ export default props => {
         if (data) setUsers(data.users);
     }, [data]);
 
+    useEffect(() => {
+        switch (user.userPermission) {
+            case "ADMIN": document.getElementById('permission').value = 'ADMIN';
+                break;
+            case "MOD": document.getElementById('permission').value = 'MOD';
+                break;
+            case "STANDARD": document.getElementById('permission').value = 'STANDARD';
+                break;
+        }
+    }, [user]);
+
     function setForm(user) {
         setUser(user);
     }
 
-    function teste() {
+    function updateUsers() {
         axios({
             url: 'https://archetypeofficial.herokuapp.com/graphql',
             method: 'post',
@@ -54,7 +64,6 @@ export default props => {
                 `
             }
         }).then((result) => {
-            // console.log(result.data.data.users);
             setUsers(result.data.data.users)
         });
     }
@@ -78,62 +87,59 @@ export default props => {
                 `
             }
         }).then((result) => {
-            console.log(result.data)
-            teste();
+            updateUsers();
         });
     }
 
     //updatePermission("5f31e59a7348992a0c90bb4c", "ADMIN");
 
 
-    // const updatePermission = (_id, permission) => {
-    //     const updateUser = client.mutate({
-    //         variables: { _id, permission },
-    //         mutation: gql`
-    //             mutation updateUser($_id: String, $permission: PermissionLevels){
-    //                 updateUser(_id: $_id, userPermission: $permission) { id }
-    //             }
-    //         `,
-    //     });
-    // }
-
-    // const deletePost = async (_id) => {
-    //     const deletedPost = await client.mutate({
-    //         variables: { _id },
-    //         mutation: gql`
-    //     mutation deletePost($_id: String){
-    //       deletePost(_id: $_id) { id }
-    //     }
-    // `,
-    //     })
-    //     const deletedId = await deletedPost.data.deletePost.id;
-    //     setPosts(posts.filter(post => post.id !== deletedId))
-    // }
-
-
     if (error) throw new error();
 
     if (loading) {
-        return <p>Carregando...</p>
+        return (
+            <div className="container-load">
+                <div className="load style"> <i className="fa fa-cog fa-spin fa-5x fa-fw"></i><span className="sr-only">Loading...</span> </div>
+            </div>
+        );
     } else if (users.length > 0) {
         return (
             <div>
-                <Content title="Usuários" small="Cadastros">
+                <Content title="Usuários" small="Movimentações">
                     <div className="nav-tabs-custom">
                         <ul className="nav nav-tabs">
-                            <TabHeader label="Listar" icon="bars" target="list" update={setSelected} selected={selected} />
+                            <TabHeader label="Listar" icon="bars" target="list" update={setSelected} selected={selected} visible={true} />
                         </ul>
                         <ul className="tab-content">
                             <TabContent id='list' selected={selected}>
-                                <Form user={user} formName='Formulário' update={updatePermission} />
-                                <Table list={users} setForm={setForm} tableName=' Lista de Usuários' />
+                                {/* <Form user={user} formName='Formulário' update={updatePermission} /> */}
+                                <Form formName='Formulário'>
+                                    <div>
+                                        <FormItem type='text' name='name' text='Nome:' disabled={true} cols="12 6 3" value={user.userName} />
+                                        <FormItem type='text' name='email' text='E-mail:' disabled={true} cols="12 6 3" value={user.userEmail} />
+                                        <FormItem type='text' name='level' text='Nível:' disabled={true} cols="12 6 2" value={user.userLevel} />
+                                        <Grid cols="12 6 2">
+                                            <label className="label-form-style" htmlFor="permission">Permissão:</label>
+                                            <select className="form-control" id="permission">
+                                                <option value="STANDARD">Padrão</option>
+                                                <option value="MOD">Moderador</option>
+                                                <option value="ADMIN">Administrador</option>
+                                            </select>
+                                        </Grid>
+                                        <Grid cols="12 12 2">
+                                            <button type="submit" id="button-control-form-style" className={`btn btn-success`} onClick={() => updatePermission(user.id, document.getElementById('permission').value)}>Atualizar</button>
+                                        </Grid>
+                                    </div>
+
+                                </Form>
+                                <List list={users} setForm={setForm} tableName='Lista de Usuários' />
                             </TabContent>
                         </ul>
                     </div>
                 </Content>
             </div>
         );
-    } else return <p>Nenhum usuário administrador encontrado</p>;
+    } else return <p>Nenhum usuário encontrado</p>;
 }
 
 
@@ -164,40 +170,5 @@ export default props => {
                 </TabContent>
             </TabsContent>
         </Tabs>
-    </Content>
-</div> */}
-
-
-
-
-
-{/* <div>
-    <Content title="Usuários" small="Cadastros">
-        <div className="nav-tabs-custom">
-            <ul className="nav nav-tabs">
-                <TabHeader label="Administradores" icon="bars" target="adminUser" update={setSelectedTab} selected={selectedTab} />
-                <TabHeader label="Moderadores" icon="bars" target="modeUser" update={setSelectedTab} selected={selectedTab} />
-            </ul>
-            <ul className="tab-content">
-                <TabContent id='adminUser' selected={selectedTab}>
-                    {adminUsers.map(user =>
-                        <div key={user.id}>
-                            <p>{user.userName}</p>
-                            <p>{user.id}</p>
-                            <p>{user.userPermission}</p>
-                        </div>
-                    )}
-                </TabContent>
-                <TabContent id='modeUser' selected={selectedTab}>
-                    {modUsers.map(user =>
-                        <div key={user.id}>
-                            <p>{user.userName}</p>
-                            <p>{user.id}</p>
-                            <p>{user.userPermission}</p>
-                        </div>
-                    )}
-                </TabContent>
-            </ul>
-        </div>
     </Content>
 </div> */}

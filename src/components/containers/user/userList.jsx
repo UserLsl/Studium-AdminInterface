@@ -3,28 +3,30 @@ import React from 'react';
 export default function table(props) {
 
     function renderRows() {
-        return props.list.map(user => (
-            <tr key={user._id}>
-                <td>{user.userName}</td>
-                <td>{user.userEmail}</td>
-                <td>{user.userLevel}</td>
-                <td>{user.userPermission}</td>
-                <td>
-                    <button type="submit" className={`btn btn-success`} onClick={() => props.setForm(user)}>
-                        Editar
-                    </button>
-                </td>
-            </tr>
-        ));
+        return props.list.map((user, index) => {
+            return (
+                <tr key={user.id} id={index}>
+                    <td>{user.userName}</td>
+                    <td>{user.userEmail}</td>
+                    <td>{user.userLevel}</td>
+                    <td>{user.userPermission}</td>
+                    <td>
+                        <button type="submit" className={`btn btn-warning`} onClick={() => props.setForm(user)}>
+                            <i className="fa fa-pencil"></i>
+                        </button>
+                    </td>
+                </tr>
+            );
+        });
     }
 
     return (
-        <div className="box-body">
+        <div className="box-body table-responsive">
             <fieldset>
                 <legend>{props.tableName}</legend>
                 <table className="table">
                     <thead>
-                        <tr>
+                        <tr key="thead">
                             <td>Nome</td>
                             <td>E-mail</td>
                             <td>Nível</td>
@@ -41,4 +43,3 @@ export default function table(props) {
 
     );
 }
-

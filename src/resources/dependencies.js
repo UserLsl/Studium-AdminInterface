@@ -14,3 +14,4 @@ import 'modules/admin-lte/plugins/iCheck/flat/blue.css';
 
 // Importando CSS customizado
 import './styles/custom.css';
+import './styles/cards.css';
