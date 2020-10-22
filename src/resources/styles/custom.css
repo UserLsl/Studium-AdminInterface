@@ -67,3 +67,98 @@ button {
 .tab-style {
     cursor: pointer;
 }
+
+/* Box personalizada */
+.box-header-style {
+    /* box-shadow: 4px 4px 4px black; */
+    -webkit-box-shadow: 0px 0px 0px 1px #3c8dbc;
+    -moz-box-shadow:    0px 0px 0px 1px #3c8dbc;
+    box-shadow:         0px 0px 0px 1px #3c8dbc;
+    border-radius: 0px 20px 0px 20px;
+}
+
+.box-body-style {
+    -webkit-box-shadow: 0px 0px 0px 1px #3c8dbc;
+    -moz-box-shadow:    0px 0px 0px 1px #3c8dbc;
+    box-shadow:         0px 0px 0px 1px #3c8dbc;
+    border-radius: 5px;
+}
+
+/* Div personalizada com padding (margem) */
+.div-padding-style {
+    padding-bottom: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 10px;
+}
+
+/* Div fixa na tela */
+.div-fixed-style {
+    position: fixed;
+    margin-right: 50px;
+    height: 348px;
+}
+
+/* Imagem style para a página de visualização de post */
+.gallery .card .background-style img {
+    height: 252px;
+    width: 210px;
+    /* width: 100%;
+    height: 100%; */
+    object-fit: cover;
+  }
+
+/* Divs personalizadas para aparecer em mobile ou desktop */
+@media only screen and (max-width: 992px) {
+    .mobile-hide{ display: none !important; }
+}
+@media only screen and (max-width: 992px) {
+    .mobile{ display: inline !important; }
+}
+@media only screen and (min-width: 993px) {
+    .desktop-hide{ display: none !important; }
+}
+
+
+.div-button-style {
+    padding-bottom: 5px;
+    padding-left: 5px;
+    width: 100vh;
+}
+
+
+.btn-card-style {
+    width: 46%;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+.box-style {
+    min-height: 500px;
+}
+
+.valueBox-style {
+    height: 110px;
+}
+
+.chart-style {
+    height: auto;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+
+.chartItem-style {
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    cursor: pointer;
+    outline: none;
+}
+
+.div-padding-top-style {
+    padding-top: 70px ;
+}

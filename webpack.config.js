@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const json = require('json-loader');
 
 module.exports = {
     entry: './src/index.jsx',
@@ -42,6 +43,9 @@ module.exports = {
         }, {
             test: /\.woff|.woff2|.ttf|.eot|.svg|.png|.jpg*.*$/,
             loader: 'file'
+        }, {
+            test: /\.json$/,
+            loader: 'json-loader'
         }]
     }
 }

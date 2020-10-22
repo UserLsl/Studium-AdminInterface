@@ -6,8 +6,8 @@ export default function table(props) {
         return props.list.map((user, index) => {
             return (
                 <tr key={user.id} id={index}>
-                    <td>{user.userName}</td>
-                    <td>{user.userEmail}</td>
+                    <td>{user.nickname}</td>
+                    <td>{user.username}</td>
                     <td>{user.userLevel}</td>
                     <td>{user.userPermission}</td>
                     <td>

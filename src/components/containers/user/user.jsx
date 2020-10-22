@@ -48,17 +48,16 @@ export default props => {
                 query: `
                     {
                         users {
-                          id
-                          userName
-                          userPassword
-                          userEmail
-                          userExp
-                          userLevel
-                          userPermission
-                          userRanking
-                          userPosts
-                          userComments
-                          userReports
+                            id
+                            nickname
+                            username
+                            userExp
+                            userLevel
+                            userPermission
+                            userRanking
+                            userPosts
+                            userComments
+                            userReports
                         }
                     }
                 `
@@ -115,8 +114,8 @@ export default props => {
                                 {/* <Form user={user} formName='Formulário' update={updatePermission} /> */}
                                 <Form formName='Formulário'>
                                     <div>
-                                        <FormItem type='text' name='name' text='Nome:' disabled={true} cols="12 6 3" value={user.userName} />
-                                        <FormItem type='text' name='email' text='E-mail:' disabled={true} cols="12 6 3" value={user.userEmail} />
+                                        <FormItem type='text' name='name' text='Nome:' disabled={true} cols="12 6 3" value={user.nickname} />
+                                        <FormItem type='text' name='email' text='E-mail:' disabled={true} cols="12 6 3" value={user.username} />
                                         <FormItem type='text' name='level' text='Nível:' disabled={true} cols="12 6 2" value={user.userLevel} />
                                         <Grid cols="12 6 2">
                                             <label className="label-form-style" htmlFor="permission">Permissão:</label>

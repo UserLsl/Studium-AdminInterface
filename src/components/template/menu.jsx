@@ -13,7 +13,7 @@ export default props => {
                         <MenuItem path='#/categories' label='Categorias' icon='puzzle-piece' />
                     </MenuTree> */}
                     <MenuTree label='Cadastros' icon='plus-square'>
-                        <MenuItem path='#/categories' label='Categorias' icon='tags' />
+                        <MenuItem path='#/categories' label='Categorias' icon='folder' /> {/* tags */}
                     </MenuTree>
                     <MenuTree label='Movimentações' icon='refresh'>
                         <MenuItem path='#/users' label='Usuários' icon='user-circle-o' />
@@ -23,7 +23,7 @@ export default props => {
                         <MenuItem path='#/reportComments' label='Comentários' icon='comment' />
                         <MenuItem path='#/reportPosts' label='Postagens' icon='edit' />
                     </MenuTree>
-                    <MenuItem path='#' label='Configurações' icon='cog' />
+                    {/* <MenuItem path='#' label='Configurações' icon='cog' /> */}
                 </ul>
             </section>
         </aside>

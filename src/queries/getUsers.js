@@ -4,9 +4,8 @@ const GET_USERS = gql`
 {
     users {
       id
-      userName
-      userPassword
-      userEmail
+      nickname
+      username
       userExp
       userLevel
       userPermission
