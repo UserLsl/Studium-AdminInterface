@@ -162,3 +162,12 @@ button {
 .div-padding-top-style {
     padding-top: 70px ;
 }
+
+.active-teste-style {
+    transform: rotate(270deg);
+}
+
+.textMessage-style {
+    font-size: 30px;
+    color: crimson;
+}

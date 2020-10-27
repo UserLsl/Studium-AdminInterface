@@ -8,6 +8,7 @@ import TabHeader from '../../common/tab/tabHeader';
 import TabContent from '../../common/tab/tabContent';
 import Posts from './postGroup';
 import PostView from './postView';
+import Swal from 'sweetalert2';
 
 export default (props) => {
 
@@ -30,9 +31,28 @@ export default (props) => {
     }
 
     function actionDeletePost(id) {
-        deletePost({ variables: { id } });
-        renderTabSelected(true, 'list');
-        refetch();
+        Swal.fire({
+            title: 'Você tem certeza?',
+            icon: 'question',
+            showCancelButton: true,
+            cancelButtonColor: '#3085d6',
+            confirmButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Deletar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deletePost({ variables: { id } });
+                renderTabSelected(true, 'list');
+                refetch();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Postagem excluída com sucesso!',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            }
+        });
     }
 
     if (error) throw new error();

@@ -9,10 +9,12 @@ export default function table(props) {
                     <td>{index + 1}</td>
                     <td>{category.categoryTitle}</td>
                     <td>{category.categoryPosts.length}</td>
-                    <td>
+                    <td style={{"width": "5%"}}>
                         <button className="btn btn-warning" onClick={() => props.actionUpdate(true, 'update', category)}>
                             <i className="fa fa-pencil"></i>
                         </button>
+                    </td>
+                    <td style={{"width": "5%"}}>
                         <button className="btn btn-danger" onClick={() => props.actionDelete(category.id)}>
                             <i className="fa fa-trash-o"></i>
                         </button>
@@ -33,7 +35,8 @@ export default function table(props) {
                             <td>Index</td>
                             <td>Descrição</td>
                             <td>Qtde de Posts</td>
-                            <td>Ações</td>
+                            <td>Editar</td>
+                            <td>Excluir</td>
                         </tr>
                     </thead>
                     <tbody>

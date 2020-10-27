@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 import { useQuery, useApolloClient } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
@@ -63,7 +64,14 @@ export default props => {
                 `
             }
         }).then((result) => {
-            setUsers(result.data.data.users)
+            setUsers(result.data.data.users);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Permissão do usuário atualizada com sucesso!',
+                showConfirmButton: false,
+                timer: 2000
+            });
         });
     }
 

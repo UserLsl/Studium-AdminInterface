@@ -24,7 +24,7 @@ export default props => {
 
     function renderTabSelected(visible, target) {
         console.log('estou no render renderTabSelected');
-        setState({...state, tabsVisible: { list: visible, view: !visible }, tabSelected: target});
+        setState({ ...state, tabsVisible: { list: visible, view: !visible }, tabSelected: target });
     }
 
     function tabViewWillMount(visible, target, commentId, reportId) {
@@ -45,9 +45,9 @@ export default props => {
                 `
             }
         }).then((result) => {
-            if(result.data.data.comment) {
+            if (result.data.data.comment) {
                 console.log('Retorno: ' + result.data.data.comment.commentBody);
-                setState({...state, reportBody: result.data.data.comment.commentBody, reportId, commentId, tabsVisible: { list: visible, view: !visible }, tabSelected: target});
+                setState({ ...state, reportBody: result.data.data.comment.commentBody, reportId, commentId, tabsVisible: { list: visible, view: !visible }, tabSelected: target });
                 // renderTabSelected(visible, target);
             } else {
                 console.log('N tenho um comentário');
@@ -60,37 +60,66 @@ export default props => {
     function actionDeleteComment(id) {
         console.log('Aqui vou apagar o comentário');
 
-        if(id != '') {
-            // console.log('entrei');
-            axios({
-                url: 'https://archetypeofficial.herokuapp.com/graphql',
-                method: 'post',
-                data: {
-                    query: `
-                        mutation {
-                            deleteComment (
-                                _id: "${id}"
-                            ), {
-                                id
-                            }
+        Swal.fire({
+            title: 'Você tem certeza?',
+            icon: 'question',
+            showCancelButton: true,
+            cancelButtonColor: '#3085d6',
+            confirmButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Deletar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                if (id != '') {
+                    // console.log('entrei');
+                    axios({
+                        url: 'https://archetypeofficial.herokuapp.com/graphql',
+                        method: 'post',
+                        data: {
+                            query: `
+                                mutation {
+                                    deleteComment (
+                                        _id: "${id}"
+                                    ), {
+                                        id
+                                    }
+                                }
+                            `
                         }
-                    `
+                    }).then((result) => {
+                        console.log('Retorno: ' + result);
+                        // setState({...state, reportBody: result.data.data.comment.commentBody, reportId, commentId, tabsVisible: { list: visible, view: !visible }, tabSelected: target});
+                        renderTabSelected(true, 'list');
+                        actionUpdateSolved(state.reportId);
+                    }).catch(err => {
+                        console.log(err.response);
+                    });
                 }
-            }).then((result) => {
-                console.log('Retorno: ' + result);
-                // setState({...state, reportBody: result.data.data.comment.commentBody, reportId, commentId, tabsVisible: { list: visible, view: !visible }, tabSelected: target});
-                renderTabSelected(true, 'list');
-                actionUpdateSolved(state.reportId);
-            }).catch(err => {
-                console.log(err.response);
-            });
-        }
+
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Comentário excluído com sucesso!',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            }
+        });
+
     }
 
     function actionUpdateSolved(reportId) {
         console.log('feito!');
         updateReport({ variables: { id: reportId, solved: true } });
         refetch();
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Denúncia resolvida!',
+            showConfirmButton: false,
+            timer: 2000
+        });
     }
 
     if (error) throw new error();
@@ -122,7 +151,7 @@ export default props => {
                                 <button className={`btn btn-default`} onClick={() => renderTabSelected(true, 'list')}>Voltar para a lista</button>
                                 <button className={`btn btn-danger`} onClick={() => actionDeleteComment(state.commentId)}>Apagar Comentário</button>
                             </TabContent>
-                        </ul> 
+                        </ul>
                     </div>
                 </Content>
             </div>

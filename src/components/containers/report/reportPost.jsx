@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useLazyQuery, useMutation, useQuery } from '@apollo/react-hooks';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 import { GET_REPORTS, UPDATE_REPORTS } from '../../../queries/proceduresReport';
 import { DELETE_POST } from '../../../queries/proceduresPots';
@@ -93,15 +94,42 @@ export default props => {
 
     function actionDeletePost(id) {
         console.log('estou em actionDelete: ' + state.reportId)
-        deletePost({ variables: { id } });
-        actionUpdateSolved(state.reportId);
-        renderTabSelected(true, 'list');
+
+        Swal.fire({
+            title: 'Você tem certeza?',
+            icon: 'question',
+            showCancelButton: true,
+            cancelButtonColor: '#3085d6',
+            confirmButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Deletar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deletePost({ variables: { id } });
+                actionUpdateSolved(state.reportId);
+                renderTabSelected(true, 'list');
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Postagem excluída com sucesso!',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            }
+        });
     }
 
     function actionUpdateSolved(reportId) {
         console.log('feito!');
         updateReport({ variables: { id: reportId, solved: true } });
         refetch();
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Denúncia resolvida!',
+            showConfirmButton: false,
+            timer: 2000
+        });
     }
 
     if (error) throw new error();

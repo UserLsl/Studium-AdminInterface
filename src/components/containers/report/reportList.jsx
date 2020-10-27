@@ -11,8 +11,8 @@ export default function table(props) {
                             <td>{report.reportTitle}</td>
                             <td>{report.reportBody}</td>
                             <td>
-                                <button className="btn btn-info">
-                                    <i className="fa fa-newspaper-o" onClick={() => props.actionView(false, 'view', report.postId, report.id)}></i>
+                                <button className="btn btn-info" onClick={() => props.actionView(false, 'view', report.postId, report.id)}>
+                                    <i className="fa fa-newspaper-o"></i>
                                 </button>
                             </td>
                             <td>
@@ -30,8 +30,8 @@ export default function table(props) {
                             <td>{report.reportTitle}</td>
                             <td>{report.reportBody}</td>
                             <td>
-                                <button className="btn btn-info">
-                                    <i className="fa fa-newspaper-o" onClick={() => props.actionView(false, 'view', report.commentId, report.id)}></i>
+                                <button className="btn btn-info" onClick={() => props.actionView(false, 'view', report.commentId, report.id)}>
+                                    <i className="fa fa-newspaper-o"></i>
                                 </button>
                             </td>
                             <td>
@@ -65,6 +65,5 @@ export default function table(props) {
                 </table>
             </fieldset>
         </div>
-
     );
 }

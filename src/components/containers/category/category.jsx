@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLazyQuery, useMutation, useQuery } from '@apollo/react-hooks';
+import Swal from 'sweetalert2';
 
-import {GET_CATEGORIES, INSERT_CATEGORY, UPDATE_CATEGORY, DELETE_CATEGORY} from '../../../queries/proceduresCategory';
+import { GET_CATEGORIES, INSERT_CATEGORY, UPDATE_CATEGORY, DELETE_CATEGORY } from '../../../queries/proceduresCategory';
 
 import List from './categoryList';
 import Content from '../../template/content';
@@ -35,18 +36,52 @@ export default props => {
     }
 
     function actionUpdateCategory() {
-        updateCategory({ variables: { id: category.id, categoryTitle: category.categoryTitle} });
+        updateCategory({ variables: { id: category.id, categoryTitle: category.categoryTitle } });
         renderTabSelected(false, 'list');
+        Swal.fire({
+            position: 'top-end',
+            icon: 'info',
+            title: 'Categoria atualizada com sucesso!',
+            showConfirmButton: false,
+            timer: 2000
+        });
     }
 
     function actionInsertCategory(value) {
         insertCategory({ variables: { categoryTitle: value } });
+        refetch();
         renderTabSelected(false, 'list');
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Categoria adicionada com sucesso!',
+            showConfirmButton: false,
+            timer: 2000
+        });
     }
 
     function actionDeleteCategory(id) {
-        deleteCategory({ variables: { id } });
-        refetch();
+        Swal.fire({
+            title: 'Você tem certeza?',
+            icon: 'question',
+            showCancelButton: true,
+            cancelButtonColor: '#3085d6',
+            confirmButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Deletar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteCategory({ variables: { id } });
+                refetch();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Categoria excluída com sucesso!',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            }
+        });
     }
 
     function renderTabSelected(visible, target) {
@@ -96,11 +131,11 @@ export default props => {
                                         <button id="button-wide-form-style" className={'btn btn-success'} onClick={() => actionInsertCategory(document.getElementById('tituloInsert').value)}>Salvar</button>
                                     </Grid>
                                     <Grid cols="6 2 2 2">
-                                        <button id="button-wide-form-style" className={'btn btn-default'}onClick={() => renderTabSelected(false, 'list')}>Cancelar</button>
+                                        <button id="button-wide-form-style" className={'btn btn-default'} onClick={() => renderTabSelected(false, 'list')}>Cancelar</button>
                                     </Grid>
                                 </Form>
                             </TabContent>
-                        </ul> 
+                        </ul>
                     </div>
                 </Content>
             </div>
