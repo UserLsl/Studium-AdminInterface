@@ -13,6 +13,25 @@ export default props => {
         error: ''
     });
 
+    const inputUsername = React.createRef();
+    const inputPassword = React.createRef();
+
+    axios.get('https://archetypeofficial.herokuapp.com/user', { withCredentials: true }).then(x => console.log(x))
+
+    const userAuth = () => {
+        axios.get(`https://archetypeofficial.herokuapp.com/login?username=${inputUsername.current.value}&password=${inputPassword.current.value}`, { withCredentials: true }).then(x => console.log(x))
+
+        // if (props.user == null) {
+        //     axios.get('https://archetypeofficial.herokuapp.com/user', { withCredentials: true }).then(res => res.data.user ? props.setUser(res.data.user) : null);
+        // }
+
+        // if (tryLoggin.data === "Incorrect username and password combination!") {
+        //     document.getElementById("errorMessage").innerHTML = `<p class="loginErrorMessage">${tryLoggin.data}</p>`;
+        // }
+
+        // return tryLoggin;
+    }
+
     function validateUser() {
         // e.preventDefault();
         axios.get(
@@ -20,21 +39,21 @@ export default props => {
             // `https://archetypeofficial.herokuapp.com/login?username=${state.email}&password=${state.pass}`, { withCredentials: true }
             `https://archetypeofficial.herokuapp.com/login?username=lucas.leinatti%40fatec.sp.gov.br&password=3210`, { withCredentials: true }
         )
-        .then((result) => {
-            console.log(result)
-            // if (result.data == 'Helloooooo!') {
-            //     // props.changeState({ logged: true });
-            // } else {
-            //     Swal.fire({
-            //         position: 'top-end',
-            //         icon: 'error',
-            //         title: 'Endereço de E-mail ou Senha inválidos!',
-            //         showConfirmButton: false,
-            //         timer: 2000
-            //     });
-            //     setState({ ...state, error: 'O email ou a senha fornecidos não correspondem!' });
-            // }
-        })
+            .then((result) => {
+                console.log(result)
+                // if (result.data == 'Helloooooo!') {
+                //     // props.changeState({ logged: true });
+                // } else {
+                //     Swal.fire({
+                //         position: 'top-end',
+                //         icon: 'error',
+                //         title: 'Endereço de E-mail ou Senha inválidos!',
+                //         showConfirmButton: false,
+                //         timer: 2000
+                //     });
+                //     setState({ ...state, error: 'O email ou a senha fornecidos não correspondem!' });
+                // }
+            })
         // .catch(err => {
         //     Swal.fire({
         //         position: 'top-end',
@@ -54,20 +73,23 @@ export default props => {
                 <p id="profile-name" className="name-card-style">Studium</p>
                 <p className="subName-card-style">ADMIN</p>
                 < br />
-                <form className="form-signin" onSubmit={e => validateUser(e)}>
+                {/* <form className="form-signin" onSubmit={e => validateUser(e)}>
                     <span id="reauth-email" className="reauth-email" style={{ "color": "red" }}>{state.error}</span>
-                    <input type="email" id="inputEmail" className="form-control" placeholder="Endereço de Email" autoComplete="username"
+                    <input ref={inputUsername} type="email" id="inputEmail" className="form-control" placeholder="Endereço de Email" autoComplete="username"
                         value={state.email} onChange={e => setState({ ...state, email: e.target.value })}
                     ></input>
-                    <input type="password" id="inputPassword" className="form-control" placeholder="Senha" autoComplete="current-password"
+                    <input ref={inputPassword} type="password" id="inputPassword" className="form-control" placeholder="Senha" autoComplete="current-password"
                         value={state.pass} onChange={e => setState({ ...state, pass: e.target.value })}
                     ></input>
                     <button className="btn btn-primary btn-block btn-flat" type="submit" style={{ "marginLeft": 0 }}>Entrar</button>
-                </form>
+                </form> */}
+                <input className="form-control" ref={inputUsername} placeholder="Username"></input>
+                <input type="password" className="form-control" ref={inputPassword} placeholder="Password"></input>
+                <button className="btn btn-primary btn-block btn-flat" onClick={() => userAuth()}>Login</button>
                 {/* <a href="#" className="forgot-password">Esqueceu sua senha?</a> */}
             </div>
             <button className="btn btn-primary btn-block btn-flat" type="submit" style={{ "marginLeft": 0 }}
-                onClick={() => validateUser()}
+                onClick={() => userAuth()}
             >Teste</button>
         </div>
     );
