@@ -18,7 +18,7 @@ export default props => {
     return (
         // <ApolloProvider client={client}>
             <div className="wrapper">
-                <Header />
+                <Header user={props.user} />
                 <Menu />
                 <div className="content-wrapper">
                     <Routes />

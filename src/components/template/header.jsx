@@ -15,7 +15,7 @@ export default props => {
             <nav className="navbar navbar-static-top">
                 <a href="#" className="sidebar-toggle" data-toggle="offcanvas"></a>
 
-                <Navbar />
+                <Navbar user={props.user} />
                 {/* <div className="navbar-custom-menu">
                     <ul className="nav navbar-nav">
 

@@ -14,21 +14,14 @@ const client = new ApolloClient({ uri });
 export default props => {
 
     const [ state, setState ] = useState({
-        logged: false
+        logged: false,
+        user: []
     });
 
     if(state.logged) {
-
-        // axios.get(
-        //     `http://archetypeofficial.herokuapp.com/user`
-        // ).then((result) => {
-        //     console.log('eu')
-        //     console.log(result)
-        // })
-
         return (
             <ApolloProvider client={client}>
-                <App />
+                <App user={state.user} />
             </ApolloProvider>
         );
     } else {
