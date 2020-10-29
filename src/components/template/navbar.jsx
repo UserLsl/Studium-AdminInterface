@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 
 
@@ -37,7 +36,7 @@ export default props => {
                                 <a href="#" className="btn btn-default btn-flat">Profile</a>
                             </div> */}
                             <div className="pull-right">
-                                <a href="#" className="btn btn-default btn-flat" >Sair da conta</a>
+                                <a style={{ "cursor": "pointer" }} className="btn btn-default btn-flat" href="https://archetypeofficial.herokuapp.com/logout" >Sair da conta</a>
                             </div>
                         </li>
                     </ul>
