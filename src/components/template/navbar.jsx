@@ -36,7 +36,8 @@ export default props => {
                                 <a href="#" className="btn btn-default btn-flat">Profile</a>
                             </div> */}
                             <div className="pull-right">
-                                <a style={{ "cursor": "pointer" }} className="btn btn-default btn-flat" href="https://archetypeofficial.herokuapp.com/logout?redir=http://localhost:3000" >Sair da conta</a>
+                                <a style={{ "cursor": "pointer" }} className="btn btn-default btn-flat" href="https://archetypeofficial.herokuapp.com/logout?redir=https://studium-admin.vercel.app/" >Sair da conta</a>
+                                {/* https://archetypeofficial.herokuapp.com/logout?redir=http://localhost:3000 */}
                             </div>
                         </li>
                     </ul>
