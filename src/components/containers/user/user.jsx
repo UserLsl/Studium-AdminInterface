@@ -98,8 +98,17 @@ export default props => {
         });
     }
 
-    //updatePermission("5f31e59a7348992a0c90bb4c", "ADMIN");
-
+    if (data) {
+        if (data.users.length == 0) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Nenhum usuário encontrado!',
+                showConfirmButton: false,
+                timer: 2000
+            });
+        }
+    }
 
     if (error) throw new error();
 
@@ -146,36 +155,7 @@ export default props => {
                 </Content>
             </div>
         );
-    } else return <p>Nenhum usuário encontrado</p>;
+    } else {
+        return <p>Nenhum usuário encontrado</p>;
+    }
 }
-
-
-
-
-{/* <div>
-    <ContentHeader title="Ciclos de Pagamento" small="Cadastros" />
-    <Content>
-        <Tabs>
-            <TabsHeader>
-                <TabHeader label="Listar" icon="bars" target="tabList" />
-                <TabHeader label="Incluir" icon="plus" target="tabCreate" />
-                <TabHeader label="Alterar" icon="pencil" target="tabUpdate" />
-                <TabHeader label="Excluir" icon="trash-o" target="tabDelete" />
-            </TabsHeader>
-            <TabsContent>
-                <TabContent id='tabList'>
-                    <List />
-                </TabContent>
-                <TabContent id='tabCreate'>
-                    <Form onSubmit={this.props.create} submitLabel="Incluir" submitClass="primary" />
-                </TabContent>
-                <TabContent id='tabUpdate'>
-                    <Form onSubmit={this.props.update} submitLabel="Alterar" submitClass="info" />
-                </TabContent>
-                <TabContent id='tabDelete'>
-                    <Form onSubmit={this.props.remove} readOnly={true} submitLabel="Excluir" submitClass="danger" />
-                </TabContent>
-            </TabsContent>
-        </Tabs>
-    </Content>
-</div> */}

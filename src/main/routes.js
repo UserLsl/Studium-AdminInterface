@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Route, Redirect, hashHistory } from 'react-router';
 
-import Dashboard from '../components/containers/dashboard';
+import Dashboard from '../components/containers/home/dashboard';
 import User from '../components/containers/user/user';
 import Category from '../components/containers/category/category';
 import Post from '../components/containers/post/post';

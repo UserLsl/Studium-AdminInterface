@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import Content from '../template/content';
-import ValueBox from '../common/widget/valueBox';
-import Row from '../common/layout/row';
+import Content from '../../template/content';
+import ValueBox from '../../common/widget/valueBox';
+import Row from '../../common/layout/row';
 import Graph from './graph';
 
 
@@ -49,7 +49,7 @@ export default () => {
                     highestScorer = like[1];
                 }
             });
-            return [highestScorer, highScore];
+            return [highestScorer, highScore * 5000];
         } else {
             return ['none', 0];
         }
@@ -149,7 +149,6 @@ export default () => {
                     console.log('usuário: ' + userIndex + ' total: ' + userLength);
 
                     if (userIndex == userLength) {
-                        console.log('sjakadjka');
                         console.log(temp);
                         setUsersLikes(temp);
                     }

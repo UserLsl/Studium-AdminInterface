@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactHtmlParser from 'react-html-parser';
 
+import imgDefault from '../../../resources/images/imgDefault.jpg';
+
 import Grid from '../../common/layout/grid';
 import Row from '../../common/layout/row';
 
@@ -48,7 +50,7 @@ export default props => {
                                         <div className="div-padding-style gallery">
                                             <div className="card">
                                                 <div className="background-style">
-                                                    <img src={props.post.postImageURL}
+                                                    <img src={props.post.postImageURL ? props.post.postImageURL : imgDefault}
                                                         alt={props.post.postTitle}>
                                                     </img>
                                                 </div>

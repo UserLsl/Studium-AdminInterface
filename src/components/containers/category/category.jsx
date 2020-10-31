@@ -25,6 +25,8 @@ export default props => {
     const [insertCategory] = useMutation(INSERT_CATEGORY);
     const [deleteCategory] = useMutation(DELETE_CATEGORY);
 
+    refetch();
+
     useEffect(() => {
         refetch();
         setCategoryPosts((tabsVisible.update) ? category.categoryPosts.length : '');
@@ -36,57 +38,119 @@ export default props => {
     }
 
     function actionUpdateCategory() {
-        updateCategory({ variables: { id: category.id, categoryTitle: category.categoryTitle } });
-        renderTabSelected(false, 'list');
-        Swal.fire({
-            position: 'top-end',
-            icon: 'info',
-            title: 'Categoria atualizada com sucesso!',
-            showConfirmButton: false,
-            timer: 2000
+        checkCategory(category.categoryTitle).then(_ => {
+            updateCategory({ variables: { id: category.id, categoryTitle: category.categoryTitle } });
+            renderTabSelected(false, 'list');
+            Swal.fire({
+                position: 'top-end',
+                icon: 'info',
+                title: 'Categoria atualizada com sucesso!',
+                showConfirmButton: false,
+                timer: 2000
+            });
         });
+
     }
 
     function actionInsertCategory(value) {
-        insertCategory({ variables: { categoryTitle: value } });
-        refetch();
-        renderTabSelected(false, 'list');
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Categoria adicionada com sucesso!',
-            showConfirmButton: false,
-            timer: 2000
+        checkCategory(value).then((resolvedValue) => {
+            insertCategory({ variables: { categoryTitle: value } });
+            refetch();
+            document.getElementById("tituloInsert").value = '';
+            renderTabSelected(false, 'list');
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Categoria adicionada com sucesso!',
+                showConfirmButton: false,
+                timer: 2000
+            });
         });
     }
 
-    function actionDeleteCategory(id) {
-        Swal.fire({
-            title: 'Você tem certeza?',
-            icon: 'question',
-            showCancelButton: true,
-            cancelButtonColor: '#3085d6',
-            confirmButtonColor: '#d33',
-            cancelButtonText: 'Cancelar',
-            confirmButtonText: 'Deletar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                deleteCategory({ variables: { id } });
-                refetch();
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Categoria excluída com sucesso!',
-                    showConfirmButton: false,
-                    timer: 2000
-                });
-            }
-        });
+    function actionDeleteCategory(id, posts) {
+        if (posts > 0) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'A categoria não pode ser excluída, pois possui postagens vinculadas!',
+                showConfirmButton: false,
+                timer: 2000
+            });
+        } else {
+            Swal.fire({
+                title: 'Você tem certeza?',
+                icon: 'question',
+                showCancelButton: true,
+                cancelButtonColor: '#3085d6',
+                confirmButtonColor: '#d33',
+                cancelButtonText: 'Cancelar',
+                confirmButtonText: 'Deletar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    deleteCategory({ variables: { id } });
+                    refetch();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Categoria excluída com sucesso!',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                }
+            });
+        }
     }
 
     function renderTabSelected(visible, target) {
         setTabsVisible({ create: !visible, update: visible, list: !visible });
         setTabSelected(target);
+    }
+
+    function checkCategory(value) {
+        return new Promise((resolve, reject) => {
+            let counter = 0;
+
+            if (value == '') {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'A categoria deve possuir um título!',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                reject(new Error(false));
+            }
+
+            data.categories.map(category => {
+                counter++;
+                console.log(counter);
+                if (category.categoryTitle == value) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Já existe uma categoria com esse título!',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    reject(new Error(false));
+                } else if (counter == data.categories.length) {
+                    resolve(true);
+                }
+            });
+        });
+    }
+
+    if (data) {
+        if (data.categories.length == 0) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Nenhuma categoria encontrada!',
+                showConfirmButton: false,
+                timer: 2000
+            });
+        }
     }
 
     if (error) throw new error();

@@ -71,28 +71,6 @@ export default (props) => {
                 });
             });
 
-            console.log(matchingPosts)
-
-            // props.data.map((post) => {
-            //     matchingPosts.map((matchPost) => {
-            //         if (post.id == matchPost[0]) {
-
-            //             selectedPosts.map((selectPost) => {
-            //                 if (selectPost.id == post.id || repeatedPost == true) {
-            //                     repeatedPost = true
-            //                 } else {
-            //                     repeatedPost = false
-            //                 }
-            //             });
-
-            //             if (!repeatedPost) selectedPosts.push(post);
-            //             repeatedPost = false
-
-            //         }
-            //     });
-            // });
-
-
             props.data.map((post) => {
                 repeatedCount = 1;
 
@@ -161,7 +139,7 @@ export default (props) => {
 
         setState({ ...state, filteredPosts: ordenedPosts });
 
-        if(ordenedPosts.length == 0 && txtSearch != '') {
+        if (ordenedPosts.length == 0 && txtSearch != '') {
             Swal.fire({
                 position: 'top-end',
                 icon: 'error',
@@ -187,6 +165,16 @@ export default (props) => {
             case 10: return 'Novembro'
             case 11: return 'Dezembro'
         }
+    }
+
+    if (props.data.length == 0) {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Nenhuma publicação encontrada!',
+            showConfirmButton: false,
+            timer: 2000
+        });
     }
 
     return (
@@ -234,4 +222,6 @@ export default (props) => {
 
         </span>
     );
+
+
 }

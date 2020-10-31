@@ -5,7 +5,7 @@ const json = require('json-loader');
 module.exports = {
     entry: './src/index.jsx',
     output: {
-        path: __dirname + '/public',
+        path: __dirname + '/build',
         filename: './app.js'
     },
     devServer: {

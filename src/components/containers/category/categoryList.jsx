@@ -15,7 +15,7 @@ export default function table(props) {
                         </button>
                     </td>
                     <td style={{"width": "5%"}}>
-                        <button className="btn btn-danger" onClick={() => props.actionDelete(category.id)}>
+                        <button className="btn btn-danger" onClick={() => props.actionDelete(category.id, category.categoryPosts.length)}>
                             <i className="fa fa-trash-o"></i>
                         </button>
                     </td>

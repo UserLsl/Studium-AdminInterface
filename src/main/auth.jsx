@@ -115,7 +115,7 @@ export default props => {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Endereço de E-mail ou Senha inválidos!',
+                    title: 'Endereço de Email ou Senha inválidos!',
                     showConfirmButton: false,
                     timer: 2000
                 });
@@ -126,7 +126,7 @@ export default props => {
             Swal.fire({
                 position: 'top-end',
                 icon: 'error',
-                title: 'Endereço de E-mail ou Senha inválidos!',
+                title: 'Endereço de Email ou Senha inválidos!',
                 showConfirmButton: false,
                 timer: 2000
             });

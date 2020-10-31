@@ -16,7 +16,7 @@ export default function table(props) {
                                 </button>
                             </td>
                             <td>
-                                <button className="btn btn-success" onClick={() => props.actionDone(report.id)}>
+                                <button className="btn btn-success" onClick={() => props.actionDone(report.id, true, report.postId)}>
                                     <i className="fa fa-check"></i>
                                 </button>
                             </td>
@@ -35,7 +35,7 @@ export default function table(props) {
                                 </button>
                             </td>
                             <td>
-                                <button className="btn btn-success" onClick={() => props.actionDone(report.id)}>
+                                <button className="btn btn-success" onClick={() => props.actionDone(report.id, true, report.commentId)}>
                                     <i className="fa fa-check"></i>
                                 </button>
                             </td>
