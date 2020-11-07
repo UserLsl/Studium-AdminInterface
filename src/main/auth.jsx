@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-import imgLogo from '../resources/images/logo.jpg';
+import imgLogo from '../resources/images/studium-admin-logo.png';
 import '../resources/styles/auth.css';
 
 export default props => {
@@ -18,7 +18,7 @@ export default props => {
         axios.get('https://archetypeofficial.herokuapp.com/user', { withCredentials: true }
         ).then((userAuth) => {
             console.log(userAuth);
-    
+
             if (userAuth.data != 'Incorrect username and password combination!') {
                 axios({
                     url: 'https://archetypeofficial.herokuapp.com/graphql',
@@ -144,22 +144,21 @@ export default props => {
     } else if (!state.loading) {
         return (
             <div className="container">
-                <div className="cardAuth-style card-container">
-                    <img id="profile-img" className="img-card-style" src={imgLogo} />
-                    <p id="profile-name" className="name-card-style">Studium</p>
-                    <p className="subName-card-style">ADMIN</p>
-                    < br />
-                    <form className="form-signin" onSubmit={e => validateUser(e)}>
-                        <span id="reauth-email" className="reauth-email" style={{ "color": "red" }}>{state.error}</span>
-                        <input type="email" id="inputEmail" className="form-control" placeholder="Endereço de Email" autoComplete="username" required
-                            value={state.email} onChange={e => setState({ ...state, email: e.target.value })}
-                        ></input>
-                        <input type="password" id="inputPassword" className="form-control" placeholder="Senha" autoComplete="current-password" required
-                            value={state.pass} onChange={e => setState({ ...state, pass: e.target.value })}
-                        ></input>
-                        <button className="btn btn-primary btn-block btn-flat" type="submit" style={{ "marginLeft": 0 }}>Entrar</button>
-                    </form>
-                    {/* <a href="#" className="forgot-password">Esqueceu sua senha?</a> */}
+                <div className="loginCardOuter">
+                    <div className="cardAuth-style card-container">
+                        <img id="profile-img" className="img-card-style" src={imgLogo} />
+                        <form className="form-signin" onSubmit={e => validateUser(e)}>
+                            <span id="reauth-email" className="reauth-email" style={{ "color": "red" }}>{state.error}</span>
+                            <input type="email" id="inputEmail" className="form-control" placeholder="Email" autoComplete="username" required
+                                value={state.email} onChange={e => setState({ ...state, email: e.target.value })}
+                            ></input>
+                            <input type="password" id="inputPassword" className="form-control" placeholder="Senha" autoComplete="current-password" required
+                                value={state.pass} onChange={e => setState({ ...state, pass: e.target.value })}
+                            ></input>
+                            <button className="btn btn-primary btn-block btn-flat" type="submit" style={{ "marginLeft": 0 }}>Entrar</button>
+                        </form>
+                        {/* <a href="#" className="forgot-password">Esqueceu sua senha?</a> */}
+                    </div>
                 </div>
             </div>
         );
