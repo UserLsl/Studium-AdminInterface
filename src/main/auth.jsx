@@ -155,7 +155,7 @@ export default props => {
                             <input type="password" id="inputPassword" className="form-control" placeholder="Senha" autoComplete="current-password" required
                                 value={state.pass} onChange={e => setState({ ...state, pass: e.target.value })}
                             ></input>
-                            <button className="btn btn-primary btn-block btn-flat" type="submit" style={{ "marginLeft": 0 }}>Entrar</button>
+                            <button type="submit" style={{ "marginLeft": 0 }}>Entrar</button>
                         </form>
                         {/* <a href="#" className="forgot-password">Esqueceu sua senha?</a> */}
                     </div>

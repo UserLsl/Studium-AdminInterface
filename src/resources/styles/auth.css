@@ -135,6 +135,13 @@
     padding: 20px;
     height: 60px;
     border-radius: 3px;
+    color: rgb(255 255 255 / 50%);
+    transition: .3s;
+}
+
+.form-signin button:hover {
+    color: #fff;
+    transition: .3s;
 }
 
 .btn.btn-signin:hover, .btn.btn-signin:active, .btn.btn-signin:focus {
