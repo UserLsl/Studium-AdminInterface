@@ -306,3 +306,22 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, p {
     padding: 0px 10px;
     font-weight: 400;
 }
+
+.box-body-style {
+    border: none;
+    background: #eee;
+    border-radius: 3px;
+    padding: 30px;
+    box-shadow: none;
+    font-weight: 400;
+    color: #555;
+}
+
+.box-header-style {
+    border: none;
+    background: #eee;
+    border-radius: 3px;
+    padding: 10px 30px;
+    box-shadow: none;
+    font-weight: 500;
+}
