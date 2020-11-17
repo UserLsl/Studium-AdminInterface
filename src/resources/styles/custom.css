@@ -277,5 +277,32 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, p {
     display: flex;
     flex-direction: row;
     cursor: pointer;
-    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    box-shadow: 0 5px 10px rgba(0,0,0,.3);
+}
+
+.flex-container .gallery .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    background: linear-gradient(rgba(0,0,0,.3) 40%, rgba(0,0,0,1));
+    -webkit-transition: opacity 0.35s;
+    -o-transition: opacity 0.35s;
+    transition: opacity 0.35s;
+}
+
+.gallery .info {
+    position: absolute;
+    bottom: -45px;
+    width: 100%;
+    z-index: 100;
+}
+
+.box.gallery .info h2 {
+    line-height: 20px;
+    font-size: 16px;
+    padding: 0px 10px;
+    font-weight: 400;
 }
