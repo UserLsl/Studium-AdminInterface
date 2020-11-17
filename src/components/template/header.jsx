@@ -1,16 +1,18 @@
 import React from 'react';
-
 import Navbar from './navbar';
+import logo from '../../resources/images/studium-admin-logo-small.png';
+import logoMini from '../../resources/images/logo-studium-mini.png';
 
 export default props => {
     return (
         <header className="main-header">
             <a href="/#/" className="logo">
-                <span className="logo-mini"><b>S</b></span>
+                <span className="logo-mini">
+                <img src={logoMini} />
+                </span>
                 <span className="logo-lg">
-                    <i className="fa fa-shield"></i>
-                    <b> S</b>tudium
-            </span>
+                    <img src={logo} />
+                </span>
             </a>
             <nav className="navbar navbar-static-top">
                 <a href="#" className="sidebar-toggle" data-toggle="offcanvas"></a>
