@@ -13,6 +13,7 @@ button {
 }
 
 /* Customizando Header */
+
 .skin-blue .main-header .navbar {
     background: rgb(34, 45, 50);
 }
@@ -25,8 +26,8 @@ button {
     background: rgb(34, 45, 50);
 }
 
-
 /* Gif Loading */
+
 .container-load {
     height: 100vh;
     display: flex;
@@ -35,8 +36,8 @@ button {
     align-items: center
 }
 
-
 /* Customizando o form */
+
 #button-wide-form-style {
     margin: 40px 0px;
     width: 100%;
@@ -46,10 +47,10 @@ button {
 }
 
 #button-control-form-style {
-  margin: 40px 0px;
-  max-width: 400px;
-  min-width: 80px;
-  width: 100px; 
+    margin: 40px 0px;
+    max-width: 400px;
+    min-width: 80px;
+    width: 100px;
 }
 
 .label-form-style {
@@ -57,11 +58,11 @@ button {
     font-size: 105%;
     padding-top: 15px;
     font-weight: normal;
-} 
+}
 
 #div-style {
-  padding-right: 10px;
-  padding-left:  10px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 .tab-style {
@@ -69,22 +70,24 @@ button {
 }
 
 /* Box personalizada */
+
 .box-header-style {
     /* box-shadow: 4px 4px 4px black; */
     -webkit-box-shadow: 0px 0px 0px 1px #3c8dbc;
-    -moz-box-shadow:    0px 0px 0px 1px #3c8dbc;
-    box-shadow:         0px 0px 0px 1px #3c8dbc;
+    -moz-box-shadow: 0px 0px 0px 1px #3c8dbc;
+    box-shadow: 0px 0px 0px 1px #3c8dbc;
     border-radius: 0px 20px 0px 20px;
 }
 
 .box-body-style {
     -webkit-box-shadow: 0px 0px 0px 1px #3c8dbc;
-    -moz-box-shadow:    0px 0px 0px 1px #3c8dbc;
-    box-shadow:         0px 0px 0px 1px #3c8dbc;
+    -moz-box-shadow: 0px 0px 0px 1px #3c8dbc;
+    box-shadow: 0px 0px 0px 1px #3c8dbc;
     border-radius: 5px;
 }
 
 /* Div personalizada com padding (margem) */
+
 .div-padding-style {
     padding-bottom: 10px;
     padding-left: 7px;
@@ -93,6 +96,7 @@ button {
 }
 
 /* Div fixa na tela */
+
 .div-fixed-style {
     position: fixed;
     margin-right: 50px;
@@ -100,32 +104,40 @@ button {
 }
 
 /* Imagem style para a página de visualização de post */
+
 .gallery .card .background-style img {
     height: 252px;
     width: 210px;
     /* width: 100%;
     height: 100%; */
     object-fit: cover;
-  }
+}
 
 /* Divs personalizadas para aparecer em mobile ou desktop */
+
 @media only screen and (max-width: 992px) {
-    .mobile-hide{ display: none !important; }
-}
-@media only screen and (max-width: 992px) {
-    .mobile{ display: inline !important; }
-}
-@media only screen and (min-width: 993px) {
-    .desktop-hide{ display: none !important; }
+    .mobile-hide {
+        display: none !important;
+    }
 }
 
+@media only screen and (max-width: 992px) {
+    .mobile {
+        display: inline !important;
+    }
+}
+
+@media only screen and (min-width: 993px) {
+    .desktop-hide {
+        display: none !important;
+    }
+}
 
 .div-button-style {
     padding-bottom: 5px;
     padding-left: 5px;
     width: 100vh;
 }
-
 
 .btn-card-style {
     width: 46%;
@@ -160,7 +172,7 @@ button {
 }
 
 .div-padding-top-style {
-    padding-top: 70px ;
+    padding-top: 70px;
 }
 
 .active-teste-style {
@@ -170,4 +182,100 @@ button {
 .textMessage-style {
     font-size: 30px;
     color: crimson;
+}
+
+.logo-lg {
+    text-align: left;
+}
+
+.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side, .skin-blue .main-header .navbar, .skin-blue .main-header .logo, .skin-blue a.dropdown-toggle {
+    background: #191919;
+}
+
+body,
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, p {
+    font-family: 'Fira Sans', Arial, sans-serif !important;
+}
+
+.h4, h4 {
+    font-size: 14px;
+}
+
+.small-box h3 {
+    font-size: 26px;
+}
+
+.valueBox-style {
+    display: grid;
+    align-items: center;
+}
+
+.skin-blue .main-header .navbar .sidebar-toggle:hover {
+    color: #000;
+    background-color: #fff;
+    transition: .3s;
+}
+
+.skin-blue .main-header .logo:hover {
+    background: #191919;
+}
+
+.skin-blue .sidebar-menu>li:hover>a, .skin-blue .sidebar-menu>li.active>a {
+    color: #fff;
+    background: #1e282c;
+    border-left-color: #fff;
+}
+
+.skin-blue .main-header .navbar .nav>li>a:hover, .skin-blue .main-header .navbar .nav>li>a:active, .skin-blue .main-header .navbar .nav>li>a:focus, .skin-blue .main-header .navbar .nav .open>a, .skin-blue .main-header .navbar .nav .open>a:hover, .skin-blue .main-header .navbar .nav .open>a:focus, .skin-blue .main-header .navbar .nav>.active>a {
+    background: #fff;
+    color: #000;
+    transition: .3s;
+}
+
+.skin-blue .main-header .navbar .nav>li>a {
+    color: #fff;
+    font-weight: 500;
+}
+
+.skin-blue .main-header li.user-header {
+    background: #191919;
+}
+
+.navbar-nav>.user-menu>.dropdown-menu>li.user-header>p>small {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    color: #777;
+}
+
+.navbar-nav>.user-menu>.dropdown-menu>.user-footer {
+    background-color: #131313;
+    padding: 10px;
+}
+
+.navbar-nav>.user-menu>.dropdown-menu>.user-footer .btn-default {
+    background: #000;
+    border: none;
+    color: #777;
+    border-radius: 3px;
+    transition: .3s;
+    font-weight: 500;
+}
+
+.navbar-nav>.user-menu>.dropdown-menu>.user-footer .btn-default:hover {
+    color: #fff;
+    transition: .3s;
+}
+
+.flex-container .gallery.box {
+    width: 238px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 1%;
+    border: none;
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
 }
