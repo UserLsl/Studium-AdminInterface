@@ -32,7 +32,7 @@ export default () => {
             usersLikes.map(like => {
                 counter += like[0];
             });
-            return counter * 5000;
+            return counter * 20;
         } else {
             return 0;
         }
@@ -49,7 +49,7 @@ export default () => {
                     highestScorer = like[1];
                 }
             });
-            return [highestScorer, highScore * 5000];
+            return [highestScorer, highScore * 20];
         } else {
             return ['none', 0];
         }

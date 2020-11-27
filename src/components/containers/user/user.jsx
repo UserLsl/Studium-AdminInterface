@@ -37,8 +37,11 @@ export default props => {
         }
     }, [user]);
 
-    function setForm(user) {
-        setUser(user);
+    function setForm(user, level) {
+        let userTemp = user;
+
+        userTemp = { ...userTemp, userLevel: level }
+        setUser(userTemp);
     }
 
     function updateUsers() {
